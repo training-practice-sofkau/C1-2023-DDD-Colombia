@@ -71,3 +71,13 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Titulos
+
+Day 3 - Sistema de Carpetas y archivos vacíos
+1. 7 commits
+2. Modelo DDD
+
+Day 4 - Entidades (Objetos de Valor con validaciones, Entidades e Interface y Servicios)
+1. Todas las entidades a nivel de dominio del contexto a programar
+2. 5 commits

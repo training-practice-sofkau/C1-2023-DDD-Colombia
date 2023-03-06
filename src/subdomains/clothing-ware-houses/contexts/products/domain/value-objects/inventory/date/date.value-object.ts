@@ -1,7 +1,7 @@
 import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
 import { WrongDateFormat } from 'src/shared/validations/date.validation';
 
-export class AvailableQuantityValueObject extends ValueObjectBase<string> {
+export class DateValueObject extends ValueObjectBase<string> {
   validateData(): void {
     this.validateStructure();
   }

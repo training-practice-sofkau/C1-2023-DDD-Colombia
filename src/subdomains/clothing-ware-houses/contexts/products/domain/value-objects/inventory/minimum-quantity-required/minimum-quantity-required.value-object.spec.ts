@@ -1,7 +1,7 @@
 import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
 import { NumberGreaterThanZero } from 'src/shared/validations/greater-than-zero.validation';
 
-export class AvailableQuantityValueObject extends ValueObjectBase<number> {
+export class MinimumQuantityRequiredValueObject extends ValueObjectBase<number> {
   validateData(): void {
     this.validateStructure();
   }

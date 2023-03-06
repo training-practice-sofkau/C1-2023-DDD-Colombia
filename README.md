@@ -81,3 +81,8 @@ Day 3 - Sistema de Carpetas y archivos vacíos
 Day 4 - Entidades (Objetos de Valor con validaciones, Entidades e Interface y Servicios)
 1. Todas las entidades a nivel de dominio del contexto a programar
 2. 5 commits
+
+Week 2 Day 1 - Agregados y Eventos de dominio
+1. 4 commits
+2. Agregado o Agregregados principales devidamente codificacos son sus respectivos helpers y los archivos vacíos de pruebas unitarias.
+3. Eventos publicadores (codificados) de cada acción de las entidades en pasado.

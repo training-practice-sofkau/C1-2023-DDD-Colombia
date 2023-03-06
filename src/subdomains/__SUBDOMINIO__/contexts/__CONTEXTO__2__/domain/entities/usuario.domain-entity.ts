@@ -1,6 +1,7 @@
 import { NombreValueObject } from '../value-objects/usuario/nombre/nombre.value-object';
 import { UserIdValueObject } from '../value-objects/usuario/usuario-id/usuario-id.value-object';
 import { IUsuarioDomainEntity } from './interfaces/usuario.domain-entity.interface';
+import { TeléfonoDomainEntity } from './telefono.domain-entity';
 
 /**
  * Entidad de dominio para el Usuario
@@ -25,6 +26,8 @@ export class UsuarioDomainEntity implements IUsuarioDomainEntity {
    * @memberof UsuarioDomainEntity
    */
   nombre?: string | NombreValueObject;
+
+  telefonos?: TeléfonoDomainEntity[];
 
   /**
    * Crea una instancia de UsuarioDomainEntity

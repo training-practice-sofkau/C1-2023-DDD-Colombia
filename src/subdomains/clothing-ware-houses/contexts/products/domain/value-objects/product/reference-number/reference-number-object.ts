@@ -1,4 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { ValueObjectBase } from 'src/shared/sofka/bases';
+import { IErrorValueObject } from 'src/shared/sofka/interface';
 import { ContentDiferentReferenceNumber } from 'src/shared/validations/content-diferent-reference-number.validation';
 import { StringMaxLength } from 'src/shared/validations/string-max-length.validation';
 

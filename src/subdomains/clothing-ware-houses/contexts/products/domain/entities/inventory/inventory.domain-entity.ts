@@ -2,6 +2,7 @@ import { AvailableQuantityValueObject } from '../../value-objects/inventory/avai
 import { DateValueObject } from '../../value-objects/inventory/date/date.value-object';
 import { InventoryIdValueObject } from '../../value-objects/inventory/inventory-id/inventory-id.value-object';
 import { MinimumQuantityRequiredValueObject } from '../../value-objects/inventory/minimum-quantity-required/minimum-quantity-required.value-object.spec';
+import { IProductDomainEntity } from '../product/interfaces/product.domain-entity.interface';
 import { IInventoryDomainEntity } from './interfaces/inventory.domain-entity.interface';
 
 /**
@@ -43,6 +44,14 @@ export class InventoryDomainEntity implements IInventoryDomainEntity {
    * @memberof InventoryDomainEntity
    */
   minimumQuantityRequired?: number | MinimumQuantityRequiredValueObject;
+
+  /**
+   * product de un inventario
+   *
+   * @type {(string | MinimumQuantityRequiredValueObject)}
+   * @memberof InventoryDomainEntity
+   */
+  product?: IProductDomainEntity;
 
   /**
    * Crea una instancia de InventoryDomainEntity

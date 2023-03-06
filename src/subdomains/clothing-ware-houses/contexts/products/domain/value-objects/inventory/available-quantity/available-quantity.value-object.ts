@@ -1,4 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { ValueObjectBase } from 'src/shared/sofka/bases';
+import { IErrorValueObject } from 'src/shared/sofka/interface';
 import { NumberGreaterThanZero } from 'src/shared/validations/greater-than-zero.validation';
 
 export class AvailableQuantityValueObject extends ValueObjectBase<number> {

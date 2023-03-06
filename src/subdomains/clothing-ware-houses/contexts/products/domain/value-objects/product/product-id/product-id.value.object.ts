@@ -1,4 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { ValueObjectBase } from 'src/shared/sofka/bases';
+import { IErrorValueObject } from 'src/shared/sofka/interface';
 import { IsUUID4 } from 'src/shared/validations/is-uuid-4.validation';
 import { v4 as uuid } from 'uuid';
 

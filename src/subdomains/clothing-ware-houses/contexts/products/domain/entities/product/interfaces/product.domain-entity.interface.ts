@@ -10,7 +10,7 @@ import { IInventoryDomainEntity } from '../../inventory/interfaces/inventory.dom
 
 export interface IProductDomainEntity {
   productId?: string | ProductIdValueObject;
-  inventory?: IInventoryDomainEntity;
+  inventories?: IInventoryDomainEntity[];
   price?: number | PriceValueObject;
   name?: string | NameValueObject;
   category?: number | CategoryValueObject;

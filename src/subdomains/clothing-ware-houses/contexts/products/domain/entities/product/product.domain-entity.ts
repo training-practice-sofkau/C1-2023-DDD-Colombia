@@ -32,7 +32,7 @@ export class ProductDomainEntity implements IProductDomainEntity {
    * @type {(number | AvailableQuantityValueObject)}
    * @memberof InventoryDomainEntity
    */
-  inventory?: IInventoryDomainEntity;
+  inventories?: IInventoryDomainEntity[];
 
   /**
    * Fecha del inventario
@@ -106,7 +106,7 @@ export class ProductDomainEntity implements IProductDomainEntity {
    */
   constructor(data?: IProductDomainEntity) {
     if (data?.productId) this.productId = data.productId;
-    if (data?.inventory) this.inventory = data.inventory;
+    if (data?.inventories) this.inventories = data.inventories;
     if (data?.price) this.price = data.price;
     if (data?.name) this.name = data.name;
     if (data?.category) this.category = data.category;

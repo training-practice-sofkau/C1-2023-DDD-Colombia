@@ -1,4 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { ValueObjectBase } from 'src/shared/sofka/bases';
+import { IErrorValueObject } from 'src/shared/sofka/interface';
 import { IsEmpty } from 'src/shared/validations/is-empty-validation';
 import { StringMaxLength } from 'src/shared/validations/string-max-length.validation';
 

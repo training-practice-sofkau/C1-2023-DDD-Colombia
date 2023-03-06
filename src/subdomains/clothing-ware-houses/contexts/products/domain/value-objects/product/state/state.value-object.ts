@@ -1,4 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { ValueObjectBase } from 'src/shared/sofka/bases';
+import { IErrorValueObject } from 'src/shared/sofka/interface';
 import { ContentDiferentBoolean } from 'src/shared/validations/content-diferent-boolean.validation';
 import { IsEmpty } from 'src/shared/validations/is-empty-validation';
 

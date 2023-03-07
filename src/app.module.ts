@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DatosController } from './subdomains/__SUBDOMINIO__/contexts/__CONTEXTO__1__/infrastructure/datos.controller';
-import { GuardarService } from './subdomains/__SUBDOMINIO__/contexts/__CONTEXTO__1__/infrastructure/guardar.service';
+import { BreedTypeValueObject } from './subdomains/genetic/context/crosses-between-species/domain/value-objects/breeds/breed-type/breed-type.breeds.value-object';
 
 @Module({
   imports: [],
-  controllers: [DatosController],
-  providers: [GuardarService],
+  controllers: [],
+  providers: [BreedTypeValueObject],
 })
 export class AppModule {}

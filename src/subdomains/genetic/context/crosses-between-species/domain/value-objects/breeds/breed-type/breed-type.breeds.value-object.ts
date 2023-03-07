@@ -6,14 +6,17 @@ export class BreedTypeValueObject extends ValueObjectBase<string> {
     super(value);
   }
   validateData(): void {
-    this.ValidationBreedType();
+    if (this.value) {
+      this.ValidationBreedType();
+    }
   }
   private ValidationBreedType() {
     if (!breeds(this.value)) {
       this.setError({
         field: 'breedType',
-        message: 'El tipo "breedType" de raza no es valido',
+        message: 'aqui  "breedType" de raza no es valido',
       } as IErrorValueObject);
     }
   }
 }
+console.log(new BreedTypeValueObject('bomi'));

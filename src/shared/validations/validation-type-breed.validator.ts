@@ -11,11 +11,6 @@ const ArrayBreeds = [
 
 export const breeds = (typeBreed: string) => {
   typeBreed = typeBreed.toLowerCase();
-  if (
-    ArrayBreeds.find((type) => {
-      type === typeBreed;
-    })
-  )
-    return true;
+  if (ArrayBreeds.find((type) => type === typeBreed)) return true;
   else return false;
 };

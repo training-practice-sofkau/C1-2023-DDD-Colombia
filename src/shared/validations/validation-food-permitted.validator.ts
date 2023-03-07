@@ -11,11 +11,6 @@ const ArrayFoodPermitted = [
 export const foodPermitted = (foodPermitted: string) => {
   foodPermitted = foodPermitted.toLowerCase();
 
-  if (
-    ArrayFoodPermitted.find((type) => {
-      type === foodPermitted;
-    })
-  )
-    return true;
+  if (ArrayFoodPermitted.find((type) => type === foodPermitted)) return true;
   else return false;
 };

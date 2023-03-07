@@ -2,8 +2,13 @@ import { InventoryDomainEntity } from '../entities/inventory/inventory.domain-en
 export interface IInventoryDomainService<
   Entity extends InventoryDomainEntity = InventoryDomainEntity,
 > {
-  addInventory(): Promise<Entity>;
-  updateAvailableQuantity(): Promise<Entity>;
-  updateMiniumQuantityRequired(): Promise<Entity>;
-  updateStateInv(): Promise<Entity>;
+  addInventory(inventory: Entity): Promise<Entity>;
+  updateAvailableQuantity(
+    inventoryId: string,
+    availableQuantity: number,
+  ): Promise<Entity>;
+  updateMiniumQuantityRequired(
+    inventoryId: string,
+    miniumQuantityRequired: number,
+  ): Promise<Entity>;
 }

@@ -27,14 +27,6 @@ export class ProductDomainEntity implements IProductDomainEntity {
   productId?: string | ProductIdValueObject;
 
   /**
-   * Inventario
-   *
-   * @type {(number | AvailableQuantityValueObject)}
-   * @memberof InventoryDomainEntity
-   */
-  inventories?: IInventoryDomainEntity[];
-
-  /**
    * Fecha del inventario
    *
    * @type {(string | DateValueObject)}
@@ -99,6 +91,14 @@ export class ProductDomainEntity implements IProductDomainEntity {
   referenceNumber?: string | ReferenceNumberValueObject;
 
   /**
+   * Inventario
+   *
+   * @type {(number | AvailableQuantityValueObject)}
+   * @memberof InventoryDomainEntity
+   */
+  inventories?: IInventoryDomainEntity[];
+
+  /**
    * Crea una instancia de ProductoDomainEntity
    *
    * @param {IProductDomainEntity} [data] Datos para inicializar la entidad
@@ -106,7 +106,6 @@ export class ProductDomainEntity implements IProductDomainEntity {
    */
   constructor(data?: IProductDomainEntity) {
     if (data?.productId) this.productId = data.productId;
-    if (data?.inventories) this.inventories = data.inventories;
     if (data?.price) this.price = data.price;
     if (data?.name) this.name = data.name;
     if (data?.category) this.category = data.category;

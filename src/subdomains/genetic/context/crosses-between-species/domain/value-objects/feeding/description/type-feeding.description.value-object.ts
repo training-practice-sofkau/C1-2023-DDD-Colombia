@@ -1,7 +1,7 @@
 import { descriptionTypeFeeding } from './../../../../../../../../shared/validations/validation-description.type-feeding.validator';
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
-export class TypeFeeding extends ValueObjectBase<string> {
+export class TypeFeedingValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value);
   }

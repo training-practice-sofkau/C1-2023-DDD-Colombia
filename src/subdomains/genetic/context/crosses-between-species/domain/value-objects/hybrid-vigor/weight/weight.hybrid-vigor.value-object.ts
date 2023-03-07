@@ -1,7 +1,7 @@
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
-import { weight } from '../../../../../../../../shared/validations/validation-weight.validator';
-export class StrongerWeight extends ValueObjectBase<number> {
+import { weigth } from 'src/shared/validations/validation-weigth.validator';
+export class StrongerWeigthValueObject extends ValueObjectBase<number> {
   constructor(value?: number) {
     super(value);
   }
@@ -11,10 +11,10 @@ export class StrongerWeight extends ValueObjectBase<number> {
   }
 
   private ValidationAverageWeight() {
-    if (!weight(this.value)) {
+    if (!weigth(this.value)) {
       this.setError({
-        field: 'weight',
-        message: 'La fuerza "weight" hibrida no es acta para el cruce genetico',
+        field: 'weigth',
+        message: 'La fuerza "weigth" hibrida no es acta para el cruce genetico',
       } as IErrorValueObject);
     }
   }

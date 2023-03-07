@@ -1,7 +1,7 @@
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { foodQuality } from 'src/shared/validations/validation-food-quality.validator';
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
-export class FoodQuality extends ValueObjectBase<string> {
+export class FoodQualityValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value);
   }

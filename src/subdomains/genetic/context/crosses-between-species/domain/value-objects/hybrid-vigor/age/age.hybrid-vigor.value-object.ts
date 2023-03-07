@@ -1,7 +1,7 @@
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
 import { age } from 'src/shared/validations/validation-age.validator';
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
-export class Age extends ValueObjectBase<number> {
+export class AgeValueObject extends ValueObjectBase<number> {
   constructor(value?: number) {
     super(value);
   }

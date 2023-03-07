@@ -1,7 +1,7 @@
-import { enviroment } from '../../../../../../../../shared/validations/validation-enviroment.validator';
+import { enviroment } from '../../../../../../../../shared/validations/enviroment.validator';
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
-export class Enviroment extends ValueObjectBase<string> {
+export class EnviromentValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value);
   }

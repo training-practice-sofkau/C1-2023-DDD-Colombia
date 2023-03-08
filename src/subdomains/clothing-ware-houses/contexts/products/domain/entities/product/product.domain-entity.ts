@@ -8,6 +8,7 @@ import { ProductIdValueObject } from '../../value-objects/product/product-id/pro
 import { ReferenceNumberValueObject } from '../../value-objects/product/reference-number/reference-number-object';
 import { StateValueObject } from '../../value-objects/product/state/state.value-object';
 import { IInventoryDomainEntity } from '../inventory/interfaces/inventory.domain-entity.interface';
+import { InventoryDomainEntity } from '../inventory/inventory.domain-entity';
 import { IProductDomainEntity } from './interfaces/product.domain-entity.interface';
 
 /**
@@ -90,18 +91,12 @@ export class ProductDomainEntity implements IProductDomainEntity {
    */
   referenceNumber?: string | ReferenceNumberValueObject;
 
-  /**
-   * Inventario
-   *
-   * @type {(number | AvailableQuantityValueObject)}
-   * @memberof InventoryDomainEntity
-   */
-  inventories?: IInventoryDomainEntity[];
+  inventories?: InventoryDomainEntity[];
 
   /**
-   * Crea una instancia de ProductoDomainEntity
+   * Creates an instance of ProductDomainEntity.
    *
-   * @param {IProductDomainEntity} [data] Datos para inicializar la entidad
+   * @param {IProductDomainEntity} [data] Objeto con la info para crear entidad
    * @memberof ProductDomainEntity
    */
   constructor(data?: IProductDomainEntity) {
@@ -113,5 +108,14 @@ export class ProductDomainEntity implements IProductDomainEntity {
     if (data?.state) this.state = data.state;
     if (data?.gender) this.gender = data.gender;
     if (data?.referenceNumber) this.referenceNumber = data.referenceNumber;
+    if (data?.inventories)
+      this.inventories = data.inventories as InventoryDomainEntity[];
   }
 }
+
+/**
+ * Crea una instancia de ProductoDomainEntity
+ *
+ * @param {IProductDomainEntity} [data] Datos para inicializar la entidad
+ * @memberof ProductDomainEntity
+ */

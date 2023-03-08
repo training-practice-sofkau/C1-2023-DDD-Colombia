@@ -1,27 +1,27 @@
-import { EventPublisherBase } from '../../../../../../../shared/sofka/bases/event-publisher.base';
+import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
 
 /**
- * descripcion ....
+ *
  *
  * @export
  * @abstract
- * @class CreatedDescriptionEventPublisher
+ * @class CreatedDescriptionBreedEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class CreatedDescriptionEventPublisher<
+export abstract class CreatedDescriptionBreedEventPublisher<
   Response,
 > extends EventPublisherBase<Response> {
   /**
-   * description metodo para publicar el
    *
-   * @template Result Tipo de respuesta
-   * @return {Promise<Result>} Respuesta del brocker
-   * @memberof CreatedDescriptionEventPublisher
+   *
+   * @template Result tipo de respuesta
+   * @return  {Promise<Result>} respuesta del brocker
+   * @memberof CreatedDescriptionBreedEventPublisher
    */
-  publish<Result = any>(): Promise<Result> {
+  publis<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.created-description',
+      'crosses-between-species.created-description-breed',
       JSON.stringify(this.response),
     );
   }

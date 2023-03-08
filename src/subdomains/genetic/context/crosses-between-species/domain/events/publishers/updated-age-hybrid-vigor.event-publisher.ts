@@ -5,11 +5,11 @@ import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base'
  *
  * @export
  * @abstract
- * @class RegisteredAgeHybridVigorEventPublisher
+ * @class UpdatedAgeHybridVigorEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class RegisteredAgeHybridVigorEventPublisher<
+export abstract class UpdatedAgeHybridVigorEventPublisher<
   Response,
 > extends EventPublisherBase<Response> {
   /**
@@ -17,11 +17,11 @@ export abstract class RegisteredAgeHybridVigorEventPublisher<
    *
    * @template Result tipo de respuesta
    * @return  {Promise<Result>} respuesta del brocker
-   * @memberof RegisteredAgeHybridVigorEventPublisher
+   * @memberof UpdatedAgeHybridVigorEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.registered-age-hybrid-vigor',
+      'crosses-between-species.updated-age-hybrid-vigor',
       JSON.stringify(this.response),
     );
   }

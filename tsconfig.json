@@ -16,6 +16,34 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@sofka": ["./src/shared/sofka"],
+      "@validations": ["./src/shared/validations"],
+      "@libreta/infrastructure": [
+        "./src/subdomains/sistema-de-contactos/contexts/libreta/infrastructure"
+      ],
+      "@libreta/application": [
+        "./src/subdomains/sistema-de-contactos/contexts/libreta/application"
+      ],
+      "@libreta/domain": [
+        "./src/subdomains/sistema-de-contactos/contexts/libreta/domain"
+      ],
+      "@libreta/domain/value-object/*": [
+        "./src/subdomains/sistema-de-contactos/contexts/libreta/domain/value-objects/*"
+      ],
+      "@usuarios/infrastructure": [
+        "./src/subdomains/sistema-de-contactos/contexts/usuarios/infrastructure"
+      ],
+      "@usuarios/application": [
+        "./src/subdomains/sistema-de-contactos/contexts/usuarios/application"
+      ],
+      "@usuarios/domain": [
+        "./src/subdomains/sistema-de-contactos/contexts/usuarios/domain"
+      ],
+      "@usuarios/domain/value-object/*": [
+        "./src/subdomains/sistema-de-contactos/contexts/usuarios/domain/value-objects/*"
+      ]
+    }
   }
 }

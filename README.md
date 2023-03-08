@@ -86,3 +86,9 @@ Week 2 Day 1 - Agregados y Eventos de dominio
 1. 4 commits
 2. Agregado o Agregregados principales devidamente codificacos son sus respectivos helpers y los archivos vacíos de pruebas unitarias.
 3. Eventos publicadores (codificados) de cada acción de las entidades en pasado.
+
+Week 2 Day 2 - Casos de uso
+1. 2 commits
+2. Crear un caso de uso que agregue información en la base de datos
+3. Crear un caso de uso que extraiga información de la base de datos
+4. No olvide documentar clases, interfaces, clases abstractas, atributos, métodos y funciones

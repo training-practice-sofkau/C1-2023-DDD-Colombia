@@ -1,23 +1,16 @@
-import { IEventPublisher } from '../interface';
+import { IEventPublisher } from '@sofka';
 
 export abstract class EventPublisherBase<Response> implements IEventPublisher {
-  private _response: Response | Response[] | null;
+  private _response: Response | Response[];
 
   constructor(private readonly eventPublisher: IEventPublisher) {}
 
-  get response(): Response | Response[] | null {
+  get response(): Response | Response[] {
     return this._response;
   }
 
-  set response(value: Response | Response[] | null) {
+  set response(value: Response | Response[]) {
     this._response = value;
-  }
-
-  send<Result = any, Input = Response>(
-    pattern: any,
-    data: Input,
-  ): Promise<Result> {
-    return this.eventPublisher.send(pattern, data);
   }
 
   emit<Result = any, Input = Response>(

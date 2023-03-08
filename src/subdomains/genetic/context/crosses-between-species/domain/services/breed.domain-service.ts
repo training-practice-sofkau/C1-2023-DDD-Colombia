@@ -3,8 +3,7 @@ export interface IBreedDomainService<
   Entity extends IBreedDomainEntity = IBreedDomainEntity,
 > {
   registerBreed(breed: IBreedDomainEntity): Promise<Entity>;
-  createDescription(description: string): Promise<Entity>;
-  registerEviroment(enviroment: string): Promise<Entity>;
-  updateEviroment(enviroment: string): Promise<Entity>;
-  validationRangeParents(rangeParents: string): Promise<Entity>;
+  registerEviromentBreed(enviroment: string): Promise<Entity>;
+  updateEviromentBreed(enviroment: string): Promise<Entity>;
+  validationRangeParentsBreed(rangeParents: string): Promise<boolean>;
 }

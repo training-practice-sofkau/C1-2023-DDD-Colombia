@@ -1,19 +1,19 @@
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
-import { foodPermitted } from 'src/shared/validations/validation-food-permitted.validator';
+import { FoodPermitted } from 'src/shared/validations/food-permitted.validator';
 export class TypefoodPermittedValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value);
   }
   validateData(): void {
-    this.foodPermitted();
+    this.FoodPermittedFeeding();
   }
 
-  private foodPermitted() {
-    if (!foodPermitted(this.value)) {
+  private FoodPermittedFeeding() {
+    if (!FoodPermitted(this.value)) {
       this.setError({
-        field: 'foodPermitted',
-        message: 'El tipo  "foodPermitted" de comida no es permitido',
+        field: 'foodPermittedFeeding',
+        message: 'El tipo  "foodPermittedFeeding" de comida no es permitido',
       } as IErrorValueObject);
     }
   }

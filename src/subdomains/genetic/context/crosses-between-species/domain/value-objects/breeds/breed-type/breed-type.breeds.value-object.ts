@@ -1,5 +1,5 @@
 import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { breeds } from '../../../../../../../../shared/validations/validation-type-breed.validator';
+import { Breeds } from '../../../../../../../../shared/validations/type-breed.validator';
 
 export class BreedTypeValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
@@ -11,7 +11,7 @@ export class BreedTypeValueObject extends ValueObjectBase<string> {
     }
   }
   private ValidationBreedType() {
-    if (!breeds(this.value)) {
+    if (!Breeds(this.value)) {
       this.setError({
         field: 'breedType',
         message: 'aqui  "breedType" de raza no es valido',

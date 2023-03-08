@@ -3,11 +3,11 @@ import { feedingDomainEntity } from '../entities/feeding.domain';
 export interface IFeedingDomainService<
   Entity extends IFeedingDomainEntity = IFeedingDomainEntity,
 > {
-  regusterFeeding(feeding: feedingDomainEntity): Promise<Entity>;
-  registerFoodPermitted(foodPermitted: string): Promise<Entity>;
-  updateFoodPermitted(foodPermitted: string): Promise<Entity>;
-  createDescription(description: string): Promise<Entity>;
-  updateDescription(description: string): Promise<Entity>;
-  registerFoodComponent(foodComponent: string): Promise<Entity>;
-  updateFoodComponent(foodComponent: string): Promise<Entity>;
+  registerFeeding(feeding: feedingDomainEntity): Promise<Entity>;
+  registerFoodPermittedFeeding(foodPermitted: string): Promise<Entity>;
+  updateFoodPermittedFeeding(foodPermitted: string): Promise<Entity>;
+  createDescriptionFeeding(description: string): Promise<Entity>;
+  updateDescriptionFeeding(description: string): Promise<Entity>;
+  registerFoodComponentFeeding(foodComponent: string): Promise<Entity>;
+  updateFoodComponentFeeding(foodComponent: string): Promise<Entity>;
 }

@@ -1,6 +1,12 @@
 const ArrayFoodQuality = ['mala', 'buena', 'excelente'];
 
-export const foodQuality = (foodQuality: string) => {
+/**
+ *
+ *
+ * @param {string} foodQuality
+ * @return {boolean}
+ */
+export const FoodQuality = (foodQuality: string): boolean => {
   foodQuality = foodQuality.toLowerCase();
 
   if (ArrayFoodQuality.find((type) => type === foodQuality)) return true;

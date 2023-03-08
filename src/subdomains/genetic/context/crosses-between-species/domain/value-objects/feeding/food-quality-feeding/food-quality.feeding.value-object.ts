@@ -1,5 +1,5 @@
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
-import { foodQuality } from 'src/shared/validations/validation-food-quality.validator';
+import { FoodQuality } from 'src/shared/validations/food-quality.validator';
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
 export class FoodQualityValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
@@ -7,13 +7,13 @@ export class FoodQualityValueObject extends ValueObjectBase<string> {
   }
 
   validateData(): void {
-    this.FoodQuality();
+    this.FoodQualityFeeding();
   }
-  private FoodQuality() {
-    if (!foodQuality(this.value)) {
+  private FoodQualityFeeding() {
+    if (!FoodQuality(this.value)) {
       this.setError({
-        field: 'foodQuality',
-        message: 'La calidad "foodQuality" de la comida no admitida',
+        field: 'FoodQualityFeeding',
+        message: 'La calidad "FoodQualityFeeding" de la comida no admitida',
       } as IErrorValueObject);
     }
   }

@@ -9,7 +9,13 @@ const ArrayBreeds = [
   'pardo',
 ];
 
-export const breeds = (typeBreed: string) => {
+/**
+ *
+ *
+ * @param {string} typeBreed
+ * @return {boolean}
+ */
+export const Breeds = (typeBreed: string): boolean => {
   typeBreed = typeBreed.toLowerCase();
   if (ArrayBreeds.find((type) => type === typeBreed)) return true;
   else return false;

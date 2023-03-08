@@ -1,5 +1,5 @@
 import { IErrorValueObject } from 'src/shared/sofka/interface/error-object-value.interface';
-import { age } from 'src/shared/validations/validation-age.validator';
+import { Age } from 'src/shared/validations/age.hybrid-vigor.validator';
 import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 export class AgeValueObject extends ValueObjectBase<number> {
   constructor(value?: number) {
@@ -11,7 +11,7 @@ export class AgeValueObject extends ValueObjectBase<number> {
   }
 
   private ValidationAverangeAge() {
-    if (!age(this.value)) {
+    if (!Age(this.value)) {
       this.setError({
         field: 'age',
         message: 'La edad "age" del Bovino no es acta',

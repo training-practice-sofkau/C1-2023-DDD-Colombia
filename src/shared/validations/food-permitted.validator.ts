@@ -8,7 +8,13 @@ const ArrayFoodPermitted = [
   'aleman',
 ];
 
-export const foodPermitted = (foodPermitted: string) => {
+/**
+ *
+ *
+ * @param {string} foodPermitted
+ * @return {boolean}
+ */
+export const FoodPermitted = (foodPermitted: string): boolean => {
   foodPermitted = foodPermitted.toLowerCase();
 
   if (ArrayFoodPermitted.find((type) => type === foodPermitted)) return true;

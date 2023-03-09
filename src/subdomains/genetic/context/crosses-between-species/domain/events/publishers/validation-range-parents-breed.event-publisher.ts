@@ -1,4 +1,5 @@
 import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
+import { BreedDomainEntity } from '../../entities/breed.domain';
 
 /**
  *
@@ -10,7 +11,7 @@ import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base'
  * @template Response
  */
 export abstract class ValidationRangeParentsBreedEventPublisher<
-  Response,
+  Response = BreedDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
    *

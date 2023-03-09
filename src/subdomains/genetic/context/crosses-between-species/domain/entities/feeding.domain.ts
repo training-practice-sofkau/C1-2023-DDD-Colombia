@@ -2,7 +2,7 @@ import { TypeFeedingValueObject } from '../value-objects/feeding/description-fee
 import { TypefoodPermittedValueObject } from '../value-objects/feeding/food-permitted-feeding/food-permitted.feeding.value-object';
 import { FoodQualityValueObject } from '../value-objects/feeding/food-quality-feeding/food-quality.feeding.value-object';
 import { IFeedingDomainEntity } from './interfaces/feeding.domain-entity.interface';
-export class feedingDomainEntity implements IFeedingDomainEntity {
+export class FeedingDomainEntity implements IFeedingDomainEntity {
   feedingId: string;
   foodPermittedFeeding?: string | TypefoodPermittedValueObject;
   descriptionFeeding?: string | TypeFeedingValueObject;

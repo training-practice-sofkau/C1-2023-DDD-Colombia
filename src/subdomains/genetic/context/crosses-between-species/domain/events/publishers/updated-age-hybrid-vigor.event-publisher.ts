@@ -1,4 +1,5 @@
 import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
+import { HybridVigorDomainEntity } from '../../entities/hybrid-vigor.domain-entity';
 
 /**
  *
@@ -10,7 +11,7 @@ import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base'
  * @template Response
  */
 export abstract class UpdatedAgeHybridVigorEventPublisher<
-  Response,
+  Response = HybridVigorDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
    *

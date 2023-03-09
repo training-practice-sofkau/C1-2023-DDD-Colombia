@@ -1,4 +1,5 @@
 import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
+import { FeedingDomainEntity } from '../../entities/feeding.domain';
 
 /**
  *
@@ -10,7 +11,7 @@ import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base'
  * @template Response
  */
 export abstract class UpdatedDescriptionFeedingEventPublisher<
-  Response,
+  Response = FeedingDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
    *

@@ -12,20 +12,20 @@ import {
   ActualizarApellidoDeInformacionPersonalHelper,
   ActualizarEmailDeUsuarioHelper,
   ActualizarNombreDeInformacionPersonalHelper,
+  ActualizarPasswordDeUsuarioHelper,
   BorrarInformacionPersonalHelper,
   BorrarUsuarioHelper,
   BuscarInformacionPersonalPorApellidoHelper,
   BuscarInformacionPersonalPorInformacionPersonalIDHelper,
+  BuscarInformacionPersonalPorNombreHelper,
   BuscarInformacionPersonalPorUsuarioIDHelper,
+  BuscarUsuarioPorEmailHelper,
   BuscarUsuarioPorEmailYPasswordHelper,
   BuscarUsuarioPorUsuarioIDHelper,
   CrearInformacionPersonalHelper,
   CrearUsuarioHelper,
   ValidarUnicidadDelEmailHelper,
 } from './helpers';
-import { ActualizarPasswordDeUsuarioHelper } from './helpers/actualizar-password-de-usuario';
-import { BuscarInformacionPersonalPorNombreHelper } from './helpers/buscar-informacion-personal-por-nombre';
-import { BuscarUsuarioPorEmailHelper } from './helpers/buscar-usuario-por-email';
 
 export class UsuarioAggregateRoot
   implements IInformacionPersonalDomainService, IUsuarioDomainService

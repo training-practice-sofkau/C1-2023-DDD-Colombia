@@ -66,6 +66,12 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@sofka": "<rootDir>/shared/sofka",
+      "@validations": "<rootDir>/shared/validations",
+      "@libreta/*": "<rootDir>/subdomains/sistema-de-contactos/contexts/libreta/*",
+      "@usuarios/*": "<rootDir>/subdomains/sistema-de-contactos/contexts/usuarios/*"
+    }
   }
 }

@@ -1,3 +1,14 @@
 {
-  "cSpell.words": ["direccion", "informacion", "pais", "telefono", "unico"]
+  "cSpell.words": [
+    "direccion",
+    "informacion",
+    "julian",
+    "lassosofka",
+    "pais",
+    "telefono",
+    "testexample",
+    "unico"
+  ],
+  "iridium.npm.packageManager": "pnpm",
+  "jest.autoRun": "off"
 }

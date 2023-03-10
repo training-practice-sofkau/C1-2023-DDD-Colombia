@@ -92,3 +92,7 @@ Week 2 Day 2 - Casos de uso
 2. Crear un caso de uso que agregue información en la base de datos
 3. Crear un caso de uso que extraiga información de la base de datos
 4. No olvide documentar clases, interfaces, clases abstractas, atributos, métodos y funciones
+
+Week 2 Day 3 - Pruebas Unitarias
+1. Mínimo 10 commits
+2. Crear las pruebas unitarias necesarias para tener una cobertura del 85%

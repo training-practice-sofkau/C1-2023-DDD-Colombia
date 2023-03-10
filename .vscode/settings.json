@@ -10,5 +10,17 @@
     "unico"
   ],
   "iridium.npm.packageManager": "pnpm",
-  "jest.autoRun": "off"
+  "jest.autoRun": "off",
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "localhost",
+      "database": "c1_contacts",
+      "username": "root",
+      "password": "password"
+    }
+  ]
 }

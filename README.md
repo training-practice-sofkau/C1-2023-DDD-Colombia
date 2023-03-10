@@ -96,3 +96,7 @@ Week 2 Day 2 - Casos de uso
 Week 2 Day 3 - Pruebas Unitarias
 1. Mínimo 10 commits
 2. Crear las pruebas unitarias necesarias para tener una cobertura del 85%
+
+Week 2 Day 4 - Infraestructura
+1. Mínimo 5 commits
+2. Proyecto al 100% trabajando desde los controladores en conjunto con los eventos de dominio

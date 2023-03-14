@@ -19,4 +19,4 @@ export class BreedTypeValueObject extends ValueObjectBase<string> {
     }
   }
 }
-console.log(new BreedTypeValueObject('bomi'));
+console.log(new BreedTypeValueObject('bom'));

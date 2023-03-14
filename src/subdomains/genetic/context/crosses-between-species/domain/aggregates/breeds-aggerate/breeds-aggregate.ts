@@ -1,30 +1,43 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IFeedingDomainService } from '../../services/feeding.domain-service';
+/* eslint-disable prettier/prettier */
 import { IBreedDomainService } from '../../services/breed.domain-service';
+import { IFeedingDomainService } from '../../services/feeding.domain-service';
 import { IHybridVigorDomainService } from '../../services/hybrid-vigor.domain-service';
-import { CreatedDescriptionBreedEventPublisher } from '../../events/publishers/created-description-breed.event-publisher';
-import { IBreedDomainEntity } from '../../entities/interfaces/breed.domain-entity.interface';
-import { BreedDomainEntity } from '../../entities/breed.domain';
-import { FeedingDomainEntity } from '../../entities/feeding.domain';
-import { IFeedingDomainEntity } from '../../entities/interfaces/feeding.domain-entity.interface';
-import { HybridVigorDomainEntity } from '../../entities/hybrid-vigor.domain-entity';
-import { IHybridVigorDomainEntity } from '../../entities/interfaces/hybrid-vigor.domain-entity.interface';
-import { CreatedDescriptionFeedingEventPublisher } from '../../events/publishers/created-description-feeding.event-publisher';
-import { RegisteredAgeHybridVigorEventPublisher } from '../../events/publishers/registered-age-hybrid-vigor.event-publisher';
+import { GotBreedByIdEventPublisher } from '../../events/publishers/got-breed-by-id-event-publisher';
+import { GotFeedingByIdEventPublisher } from '../../events/publishers/got-feeding-byId.event-publisher';
+import { GotHybridVigorByIdEventPublisher } from '../../events/publishers/got-hybrid-vigor-by-Id-publisher';
 import { RegisteredBreedEventPublisher } from '../../events/publishers/registered-breed.event-publisher';
 import { RegisteredFeedingEventPublisher } from '../../events/publishers/registered-feeding.event-publisher';
-import { RegisteredFoodComponentFeedingEventPublisher } from '../../events/publishers/registered-food-component-feeding.event-publisher';
-import { RegisteredFoodPermitedEventPublisher } from '../../events/publishers/registered-food-permited.event-publisher';
-import { RegisteredWeigthHybridVigorEventPublisher } from '../../events/publishers/registered-weigth-hybrid-vigor.event-publisher';
 import { UpdatedAgeHybridVigorEventPublisher } from '../../events/publishers/updated-age-hybrid-vigor.event-publisher';
-import { UpdatedDescriptionBreedEventPublisher } from '../../events/publishers/updated-description-breed.event-publisher';
+import { UpdatedAgeEventPublisher } from '../../events/publishers/updated-age.event-publisher';
 import { UpdatedDescriptionFeedingEventPublisher } from '../../events/publishers/updated-description-feeding.event-publisher';
-import { UpdatedEnviromentEventPublisher } from '../../events/publishers/updated-enviroment.event-publisher';
-import { UpdatedFoodComponentFeedingEventPublisher } from '../../events/publishers/updated-food-component-feeding.event-publisher';
+import { UpdatedEnviromentBreedEventPublisher } from '../../events/publishers/updated-enviroment-breed.event-publisher';
+import { UpdatedFoodComponentBreedEventPublisher } from '../../events/publishers/updated-food-component-breed-event-publisher';
 import { UpdatedFoodPermitedEventPublisher } from '../../events/publishers/updated-food-permited.event-publisher';
 import { UpdatedWeigthHybridVigorEventPublisher } from '../../events/publishers/updated-weigth-hybrid-vigor.event-publisher';
 import { ValidationRangeParentsBreedEventPublisher } from '../../events/publishers/validation-range-parents-breed.event-publisher';
+import { BreedDomainEntity } from '../../entities/breed.domain';
+import { IBreedDomainEntity } from '../../entities/interfaces/breed.domain-entity.interface';
+import { IFeedingDomainEntity } from '../../entities/interfaces/feeding.domain-entity.interface';
+import { FeedingDomainEntity } from '../../entities/feeding.domain';
+import { HybridVigorDomainEntity } from '../../entities/hybrid-vigor.domain-entity';
+import { GetBreedByIdHelper } from './helpers/get-breed-by-id-helper/get-breed-by-id-helper';
+import { GetFeedingByIdHelper } from './helpers/get-feeding-byId-helper/get-feeding-byId-helper';
+import { GetHybridVigorByIdHelper } from './helpers/get-hybrid-vigor-by-Id-helper/get-hybrid-vigor-byId-helper';
+import { RegisterBreedHelper } from './helpers/register-breed.event-helper/register-breed-helper';
+import { RegisterFeedingHelper } from './helpers/register-feeding-helper/register-feeding-helper';
+import { RegisterHybridVigorHelper } from './helpers/register-hybrid-vigor-helper/register-hybrid-vigor-helper';
+import { RegisteredHybridVigorEventPublisher } from '../../events/publishers/registered-hybrid-vigor.event-publisher';
+import { UpdateAgeHybridVigorHelper } from './helpers/update-age-hybrid-vigor-helper/update-age-hybrid-vigor-helper';
+import { UpdateAgeHelper } from './helpers/update-age-helper/update-age-helper';
+import { UpdateDescriptionFeedingHelper } from './helpers/update-description-feeding-helper/update-description-feeding-helper';
+import { UpdateEnviromentBreedHelper } from './helpers/update-enviroment-breed-helper/update-enviroment-breed-helper';
+import { UpdateFoodComponentBreedHelper } from './helpers/update-food-component-breed-helper/update-food-component-breed-helper';
+import { UpdateFoodComponentFeedingHelper } from './helpers/update-food-component-feeding-helper/update-food-component-feeding-helper';
+import { UpdatedFoodComponentFeedingEventPublisher } from '../../events/publishers/updated-food-component-feeding-event-publisher';
+import { UpdateFoodPermitedHelper } from './helpers/update-food-permited-helper/update-food-permited-helper';
+import { UpdateWeigthHybridVigorHelper } from './helpers/update-weigth-hybrid-vigor-helper/update-weigth-hybrid-vigor-helper';
+import { ValidationRangeParentsBreedHelper } from './helpers/validation-range-parents-breed-helper/validation-range-parents-breed-helper';
 
 export class BreedsAgreggate
   implements
@@ -35,131 +48,218 @@ export class BreedsAgreggate
   private readonly breedDomain?: IBreedDomainService;
   private readonly feedingDomain?: IFeedingDomainService;
   private readonly hybridVigorDomain?: IHybridVigorDomainService;
-  private readonly createdDescriptionBreedEventPublisher?: CreatedDescriptionBreedEventPublisher<BreedDomainEntity>;
-  private readonly createdDescriptionFeedingEventPublisher?: CreatedDescriptionFeedingEventPublisher<FeedingDomainEntity>;
-  private readonly registeredAgeHybridVigorEventPublisher?: RegisteredAgeHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-  private readonly registeredBreedEventPublisher?: RegisteredBreedEventPublisher<IBreedDomainEntity>;
-  private readonly registeredFeedingEventPublisher?: RegisteredFeedingEventPublisher<IFeedingDomainEntity>;
-  private readonly registeredFoodComponentFeedingEventPublisher?: RegisteredFoodComponentFeedingEventPublisher<IFeedingDomainEntity>;
-  private readonly registeredFoodPermitedEventPublisher?: RegisteredFoodPermitedEventPublisher<IFeedingDomainEntity>;
-  private readonly registeredWeigthHybridVigorEventPublisher?: RegisteredWeigthHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-  private readonly updatedAgeHybridVigorEventPublisher?: UpdatedAgeHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-  private readonly updatedDescriptionBreedEventPublisher?: UpdatedDescriptionBreedEventPublisher<IBreedDomainEntity>;
-  private readonly updatedDescriptionFeedingEventPublisher?: UpdatedDescriptionFeedingEventPublisher<IFeedingDomainEntity>;
-  private readonly updatedEnviromentEventPublisher?: UpdatedEnviromentEventPublisher<IBreedDomainEntity>;
-  private readonly updatedFoodComponentFeedingEventPublisher?: UpdatedFoodComponentFeedingEventPublisher<IFeedingDomainEntity>;
-  private readonly updatedFoodPermitedEventPublisher?: UpdatedFoodPermitedEventPublisher<IFeedingDomainEntity>;
-  private readonly updatedWeigthHybridVigorEventPublisher?: UpdatedWeigthHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-  private readonly validationRangeParentsBreedEventPublisher?: ValidationRangeParentsBreedEventPublisher<IBreedDomainEntity>;
+  private readonly GotBreedByIdEventPublisher?: GotBreedByIdEventPublisher;
+  private readonly GotFeedingByIdEventPublisher?: GotFeedingByIdEventPublisher;
+  private readonly GotHybridVigorByIdEventPublisher?: GotHybridVigorByIdEventPublisher;
+  private readonly RegisteredBreedEventPublisher?: RegisteredBreedEventPublisher;
+  private readonly RegisteredFeedingEventPublisher?: RegisteredFeedingEventPublisher;
+  private readonly RegisteredHybridVigorEventPublisher?: RegisteredHybridVigorEventPublisher;
+  private readonly UpdatedAgeHybridVigorEventPublisher?: UpdatedAgeHybridVigorEventPublisher;
+  private readonly UpdatedAgeEventPublisher?: UpdatedAgeEventPublisher;
+  private readonly UpdatedDescriptionFeedingEventPublisher?: UpdatedDescriptionFeedingEventPublisher;
+  private readonly UpdatedEnviromentBreedEventPublisher?: UpdatedEnviromentBreedEventPublisher;
+  private readonly UpdatedFoodComponentBreedEventPublisher?: UpdatedFoodComponentBreedEventPublisher;
+  private readonly UpdatedFoodComponentFeedingEventPublisher?: UpdatedFoodComponentFeedingEventPublisher;
+  private readonly UpdatedFoodPermitedEventPublisher?: UpdatedFoodPermitedEventPublisher;
+  private readonly UpdatedWeigthHybridVigorEventPublisher?: UpdatedWeigthHybridVigorEventPublisher;
+  private readonly ValidationRangeParentsBreedEventPublisher?: ValidationRangeParentsBreedEventPublisher;
 
   constructor({
     breedDomain,
     feedingDomain,
     hybridVigorDomain,
-    createdDescriptionBreedEventPublisher,
-    createdDescriptionFeedingEventPublisher,
-    registeredAgeHybridVigorEventPublisher,
-    registeredBreedEventPublisher,
-    registeredFeedingEventPublisher,
-    registeredFoodComponentFeedingEventPublisher,
-    registeredFoodPermitedEventPublisher,
-    registeredWeigthHybridVigorEventPublisher,
-    updatedAgeHybridVigorEventPublisher,
-    updatedDescriptionBreedEventPublisher,
-    updatedDescriptionFeedingEventPublisher,
-    updatedEnviromentEventPublisher,
-    updatedFoodComponentFeedingEventPublisher,
-    updatedFoodPermitedEventPublisher,
-    updatedWeigthHybridVigorEventPublisher,
-    validationRangeParentsBreedEventPublisher,
+    GotBreedByIdEventPublisher,
+    GotFeedingByIdEventPublisher,
+    GotHybridVigorByIdEventPublisher,
+    RegisteredBreedEventPublisher,
+    RegisteredFeedingEventPublisher,
+    RegisteredHybridVigorEventPublisher,
+    UpdatedAgeHybridVigorEventPublisher,
+    UpdatedAgeEventPublisher,
+    UpdatedDescriptionFeedingEventPublisher,
+    UpdatedEnviromentBreedEventPublisher,
+    UpdatedFoodComponentBreedEventPublisher,
+    UpdatedFoodComponentFeedingEventPublisher,
+    UpdatedFoodPermitedEventPublisher,
+    UpdatedWeigthHybridVigorEventPublisher,
+    ValidationRangeParentsBreedEventPublisher,
   }: {
     breedDomain?: IBreedDomainService;
     feedingDomain?: IFeedingDomainService;
     hybridVigorDomain?: IHybridVigorDomainService;
-    createdDescriptionBreedEventPublisher?: CreatedDescriptionBreedEventPublisher<BreedDomainEntity>;
-    createdDescriptionFeedingEventPublisher?: CreatedDescriptionFeedingEventPublisher<FeedingDomainEntity>;
-    registeredAgeHybridVigorEventPublisher?: RegisteredAgeHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-    registeredBreedEventPublisher?: RegisteredBreedEventPublisher<IBreedDomainEntity>;
-    registeredFeedingEventPublisher?: RegisteredFeedingEventPublisher<IFeedingDomainEntity>;
-    registeredFoodComponentFeedingEventPublisher?: RegisteredFoodComponentFeedingEventPublisher<IFeedingDomainEntity>;
-    registeredFoodPermitedEventPublisher?: RegisteredFoodPermitedEventPublisher<IFeedingDomainEntity>;
-    registeredWeigthHybridVigorEventPublisher?: RegisteredWeigthHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-    updatedAgeHybridVigorEventPublisher?: UpdatedAgeHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-    updatedDescriptionBreedEventPublisher?: UpdatedDescriptionBreedEventPublisher<IBreedDomainEntity>;
-    updatedDescriptionFeedingEventPublisher?: UpdatedDescriptionFeedingEventPublisher<IFeedingDomainEntity>;
-    updatedEnviromentEventPublisher?: UpdatedEnviromentEventPublisher<IBreedDomainEntity>;
-    updatedFoodComponentFeedingEventPublisher?: UpdatedFoodComponentFeedingEventPublisher<IFeedingDomainEntity>;
-    updatedFoodPermitedEventPublisher?: UpdatedFoodPermitedEventPublisher<IFeedingDomainEntity>;
-    updatedWeigthHybridVigorEventPublisher?: UpdatedWeigthHybridVigorEventPublisher<IHybridVigorDomainEntity>;
-    validationRangeParentsBreedEventPublisher?: ValidationRangeParentsBreedEventPublisher<IBreedDomainEntity>;
+    GotBreedByIdEventPublisher?: GotBreedByIdEventPublisher;
+    GotFeedingByIdEventPublisher?: GotFeedingByIdEventPublisher;
+    GotHybridVigorByIdEventPublisher?: GotHybridVigorByIdEventPublisher;
+    RegisteredBreedEventPublisher?: RegisteredBreedEventPublisher;
+    RegisteredFeedingEventPublisher?: RegisteredFeedingEventPublisher;
+    RegisteredHybridVigorEventPublisher?: RegisteredFeedingEventPublisher;
+    UpdatedAgeHybridVigorEventPublisher?: UpdatedAgeHybridVigorEventPublisher;
+    UpdatedAgeEventPublisher?: UpdatedAgeEventPublisher;
+    UpdatedDescriptionFeedingEventPublisher?: UpdatedDescriptionFeedingEventPublisher;
+    UpdatedEnviromentBreedEventPublisher?: UpdatedEnviromentBreedEventPublisher;
+    UpdatedFoodComponentBreedEventPublisher?: UpdatedFoodComponentBreedEventPublisher;
+    UpdatedFoodComponentFeedingEventPublisher?: UpdatedFoodComponentFeedingEventPublisher;
+    UpdatedFoodPermitedEventPublisher?: UpdatedFoodPermitedEventPublisher;
+    UpdatedWeigthHybridVigorEventPublisher?: UpdatedWeigthHybridVigorEventPublisher;
+    ValidationRangeParentsBreedEventPublisher?: ValidationRangeParentsBreedEventPublisher;
   }) {
     this.breedDomain = breedDomain;
     this.feedingDomain = feedingDomain;
     this.hybridVigorDomain = hybridVigorDomain;
-    this.createdDescriptionBreedEventPublisher = createdDescriptionBreedEventPublisher;
-    this.createdDescriptionFeedingEventPublisher = createdDescriptionFeedingEventPublisher;
-    this.registeredAgeHybridVigorEventPublisher = registeredAgeHybridVigorEventPublisher;
-    this.registeredBreedEventPublisher = registeredBreedEventPublisher;
-    this.registeredFeedingEventPublisher = registeredFeedingEventPublisher;
-    this.registeredFoodComponentFeedingEventPublisher = registeredFoodComponentFeedingEventPublisher;
-    this.registeredFoodPermitedEventPublisher = registeredFoodPermitedEventPublisher;
-    this.registeredWeigthHybridVigorEventPublisher = registeredWeigthHybridVigorEventPublisher;
-    this.updatedAgeHybridVigorEventPublisher = updatedAgeHybridVigorEventPublisher;
-    this.updatedDescriptionBreedEventPublisher = updatedDescriptionBreedEventPublisher;
-    this.updatedDescriptionFeedingEventPublisher = updatedDescriptionFeedingEventPublisher;
-    this.updatedEnviromentEventPublisher = updatedEnviromentEventPublisher;
-    this.updatedFoodComponentFeedingEventPublisher = updatedFoodComponentFeedingEventPublisher;
-    this.updatedFoodPermitedEventPublisher = updatedFoodPermitedEventPublisher;
-    this.updatedWeigthHybridVigorEventPublisher = updatedWeigthHybridVigorEventPublisher;
-    this.validationRangeParentsBreedEventPublisher = validationRangeParentsBreedEventPublisher;
+    this.GotBreedByIdEventPublisher = GotBreedByIdEventPublisher;
+    this.GotFeedingByIdEventPublisher = GotFeedingByIdEventPublisher;
+    this.GotHybridVigorByIdEventPublisher = GotHybridVigorByIdEventPublisher;
+    this.RegisteredBreedEventPublisher = RegisteredBreedEventPublisher;
+    this.RegisteredFeedingEventPublisher = RegisteredFeedingEventPublisher;
+    this.UpdatedAgeHybridVigorEventPublisher =
+      UpdatedAgeHybridVigorEventPublisher;
+    this.UpdatedAgeEventPublisher = UpdatedAgeEventPublisher;
+    this.UpdatedDescriptionFeedingEventPublisher =
+      UpdatedDescriptionFeedingEventPublisher;
+    this.UpdatedEnviromentBreedEventPublisher =
+      UpdatedEnviromentBreedEventPublisher;
+    this.UpdatedFoodComponentBreedEventPublisher =
+      UpdatedFoodComponentBreedEventPublisher;
+    this.UpdatedFoodComponentFeedingEventPublisher = UpdatedFoodComponentFeedingEventPublisher;
+    this.UpdatedFoodPermitedEventPublisher = UpdatedFoodPermitedEventPublisher;
+    this.UpdatedWeigthHybridVigorEventPublisher =
+      UpdatedWeigthHybridVigorEventPublisher;
+    this.ValidationRangeParentsBreedEventPublisher =
+      ValidationRangeParentsBreedEventPublisher;
   }
-  
-  registerBreed(breed: IBreedDomainEntity): Promise<IBreedDomainEntity> {
-    throw new Error('Method not implemented.');
+  registerBreed(breed: BreedDomainEntity): Promise<BreedDomainEntity> {
+    return RegisterBreedHelper(
+        breed,
+        this.breedDomain,
+        this.RegisteredBreedEventPublisher,
+        );
   }
-  registerEviromentBreed(enviroment: string): Promise<IBreedDomainEntity> {
-    throw new Error('Method not implemented.');
+  getBreedById(id: string): Promise<BreedDomainEntity> {
+    return GetBreedByIdHelper(
+      id,
+      this.breedDomain,
+      this.GotBreedByIdEventPublisher,
+    );
   }
-  updateEviromentBreed(enviroment: string): Promise<IBreedDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateEnviromentBreed(
+    breed: IBreedDomainEntity,
+    id: string,
+    enviromentBreed: string,
+  ): Promise<BreedDomainEntity> {
+    return UpdateEnviromentBreedHelper(
+      breed,
+      id,
+      enviromentBreed,
+      this.breedDomain,
+      this.UpdatedEnviromentBreedEventPublisher,
+    );
   }
-  validationRangeParentsBreed(rangeParents: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  validationRangeParentsBreed(rangeParents: string, id: string): Promise<HybridVigorDomainEntity> {
+    return ValidationRangeParentsBreedHelper(
+      rangeParents,
+      id,
+      this.breedDomain,
+      this.ValidationRangeParentsBreedEventPublisher,
+    );
+  }
+  updateFoodComponentBreed(
+    foodComponent: IFeedingDomainEntity,
+    id: string,
+    breed: IBreedDomainEntity,
+  ): Promise<BreedDomainEntity> {
+    return UpdateFoodComponentBreedHelper(
+      foodComponent,
+      id,
+      breed,
+      this.breedDomain,
+      this.UpdatedFoodComponentBreedEventPublisher,
+    );
+  }
+  getFeedingById(id: string): Promise<IFeedingDomainEntity> {
+    return GetFeedingByIdHelper(
+      id,
+      this.feedingDomain,
+      this.GotFeedingByIdEventPublisher,
+    );
   }
   registerFeeding(feeding: FeedingDomainEntity): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+    return RegisterFeedingHelper(
+      feeding,
+      this.feedingDomain,
+      this.RegisteredFeedingEventPublisher,
+    );
   }
-  registerFoodPermittedFeeding(foodPermitted: string,): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateFoodPermitted(foodPermitted: string): Promise<IFeedingDomainEntity> {
+    return UpdateFoodPermitedHelper(
+      foodPermitted,
+      this.feedingDomain,
+      this.UpdatedFoodPermitedEventPublisher,
+    );
   }
-  updateFoodPermittedFeeding(foodPermitted: string,): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateDescriptionFeeding(
+    entity: string,
+    id: string,
+    descriptionFeeding: string,
+  ): Promise<IFeedingDomainEntity> {
+    return UpdateDescriptionFeedingHelper(
+      entity,
+      id,
+      descriptionFeeding,
+      this.feedingDomain,
+      this.UpdatedDescriptionFeedingEventPublisher,
+    );
   }
-  createDescriptionFeeding(description: string): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateFoodComponentFeeding(
+    foodComponent: string,
+    feeding: IFeedingDomainEntity
+  ): Promise<IFeedingDomainEntity> {
+    return UpdateFoodComponentFeedingHelper(
+      foodComponent,
+      feeding,
+      this.feedingDomain,
+      this.UpdatedFoodComponentFeedingEventPublisher,
+    );
   }
-  updateDescriptionFeeding(description: string): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateAge(registerAgeHybridVigor: number): Promise<HybridVigorDomainEntity> {
+    return UpdateAgeHelper(
+      registerAgeHybridVigor,
+      this.hybridVigorDomain,
+      this.UpdatedAgeEventPublisher,
+    );
   }
-  registerFoodComponentFeeding(foodComponent: string,): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  registerHybridVigor(
+    HybridVigor: HybridVigorDomainEntity,
+  ): Promise<HybridVigorDomainEntity> {
+    return RegisterHybridVigorHelper(
+      HybridVigor,
+      this.hybridVigorDomain,
+      this.RegisteredHybridVigorEventPublisher,
+    );
   }
-  updateFoodComponentFeeding(foodComponent: string, ): Promise<IFeedingDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateAgeHybridVigor(age: number): Promise<HybridVigorDomainEntity> {
+    return UpdateAgeHybridVigorHelper(
+      age,
+      this.hybridVigorDomain,
+      this.UpdatedAgeHybridVigorEventPublisher,
+    );
   }
-  registerHybridVigor(HybridVigor: HybridVigorDomainEntity,): Promise<IHybridVigorDomainEntity> {
-    throw new Error('Method not implemented.');
+  updateWeigthHybridVigor(
+    weigth: string,
+    id: string,
+  ): Promise<HybridVigorDomainEntity> {
+    return UpdateWeigthHybridVigorHelper(
+      weigth,
+      id,
+      this.hybridVigorDomain,
+      this.UpdatedWeigthHybridVigorEventPublisher,
+    );
   }
-  registerAgeHybridVigor(age: number): Promise<IHybridVigorDomainEntity> {
-    throw new Error('Method not implemented.');
+  getHybridVigorById(id: string): Promise<HybridVigorDomainEntity> {
+    return GetHybridVigorByIdHelper(
+        id,
+        this.hybridVigorDomain,
+        this.GotHybridVigorByIdEventPublisher,
+
+    );
   }
-  updateAgeHybridVigor(age: number): Promise<IHybridVigorDomainEntity> {
-    throw new Error('Method not implemented.');
-  }
-  registerWeigthHybridVigor(weigth: number): Promise<IHybridVigorDomainEntity> {
-    throw new Error('Method not implemented.');
-  }
-  updateWeigthHybridVigor(weith: number): Promise<IHybridVigorDomainEntity> {
-    throw new Error('Method not implemented.');
-  } 
 }

@@ -18,7 +18,7 @@ export abstract class RegisteredFeedingEventPublisher<
    *
    * @template Result tipo de respuesta
    * @return   {Promise<Result>} respuesta del brocker
-   * @memberof RegisteredFeedingEventPublisher
+   * @memberof UpdatedFeedingEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(

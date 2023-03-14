@@ -1,28 +1,28 @@
 import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
-import { BreedDomainEntity } from '../../entities/breed.domain';
+import { HybridVigorDomainEntity } from '../../entities/hybrid-vigor.domain-entity';
 
 /**
  *
  *
  * @export
  * @abstract
- * @class CreatedDescriptionFeedingEventPublisher
+ * @class RegisteredHybridVigorEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class CreatedDescriptionFeedingEventPublisher<
-  Response = BreedDomainEntity,
+export abstract class RegisteredHybridVigorEventPublisher<
+  Response = HybridVigorDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
-   * description metodo para publicar el
+   *
    *
    * @template Result tipo de respuesta
    * @return  {Promise<Result>} respuesta del brocker
-   * @memberof CreatedDescriptionFeedingEventPublisher
+   * @memberof RegisteredHybridVigorEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.created-description-feeding',
+      'crosses-between-species.registered-hybrid-vigor',
       JSON.stringify(this.response),
     );
   }

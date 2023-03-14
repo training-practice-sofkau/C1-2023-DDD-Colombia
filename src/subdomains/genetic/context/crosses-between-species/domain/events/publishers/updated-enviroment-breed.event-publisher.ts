@@ -1,28 +1,28 @@
-import { FeedingDomainEntity } from './../../entities/feeding.domain';
 import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
+import { BreedDomainEntity } from '../../entities/breed.domain';
 
 /**
  *
  *
  * @export
  * @abstract
- * @class RegisteredFoodPermitedEventPublisher
+ * @class UpdatedEnviromentBreedEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class RegisteredFoodPermitedEventPublisher<
-  Response = FeedingDomainEntity,
+export abstract class UpdatedEnviromentBreedEventPublisher<
+  Response = BreedDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
    *
    *
    * @template Result tipo de respuesta
    * @return  {Promise<Result>} respuesta del brocker
-   * @memberof RegisteredFoodPermitedEventPublisher
+   * @memberof UpdatedEnviromentBreedEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.registered-food-permited',
+      'crosses-between-species.updated-enviroment-breed',
       JSON.stringify(this.response),
     );
   }

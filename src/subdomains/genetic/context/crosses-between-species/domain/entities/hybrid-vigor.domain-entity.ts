@@ -3,6 +3,7 @@ import { StrongerWeigthValueObject } from '../value-objects/hybrid-vigor/weight-
 import { IHybridVigorDomainEntity } from './interfaces/hybrid-vigor.domain-entity.interface';
 
 export class HybridVigorDomainEntity implements IHybridVigorDomainEntity {
+  weigth: HybridVigorDomainEntity;
   hibrydVigorID: string;
   ageHybridVigor?: number | AgeValueObject;
   weigthHybridVigor?: number | StrongerWeigthValueObject;
@@ -12,5 +13,6 @@ export class HybridVigorDomainEntity implements IHybridVigorDomainEntity {
     if (data?.hibrydVigorID) this.hibrydVigorID = data.hibrydVigorID;
     if (data?.weigthHybridVigor)
       this.weigthHybridVigor = data.weigthHybridVigor;
+    if (data?.weigth) this.weigth = data.weigth;
   }
 }

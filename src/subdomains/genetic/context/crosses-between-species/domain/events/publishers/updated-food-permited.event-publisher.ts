@@ -1,5 +1,5 @@
-import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
 import { FeedingDomainEntity } from '../../entities/feeding.domain';
+import { EventPublisherBase } from 'src/shared/sofka/bases/event-publisher.base';
 
 /**
  *

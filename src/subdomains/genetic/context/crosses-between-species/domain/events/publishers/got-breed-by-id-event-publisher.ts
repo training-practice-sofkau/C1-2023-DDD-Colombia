@@ -6,11 +6,11 @@ import { BreedDomainEntity } from '../../entities/breed.domain';
  *
  * @export
  * @abstract
- * @class UpdatedEnviromentEventPublisher
+ * @class GotBreedByIdEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class UpdatedEnviromentEventPublisher<
+export abstract class GotBreedByIdEventPublisher<
   Response = BreedDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
@@ -18,11 +18,11 @@ export abstract class UpdatedEnviromentEventPublisher<
    *
    * @template Result tipo de respuesta
    * @return  {Promise<Result>} respuesta del brocker
-   * @memberof UpdatedEnviromentEventPublisher
+   * @memberof GotBreedByIdEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.updated-enviroment',
+      'crosses-between-species.got-breed-by-id',
       JSON.stringify(this.response),
     );
   }

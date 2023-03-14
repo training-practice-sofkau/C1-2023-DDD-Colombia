@@ -3,12 +3,15 @@ import { TypefoodPermittedValueObject } from '../value-objects/feeding/food-perm
 import { FoodQualityValueObject } from '../value-objects/feeding/food-quality-feeding/food-quality.feeding.value-object';
 import { IFeedingDomainEntity } from './interfaces/feeding.domain-entity.interface';
 export class FeedingDomainEntity implements IFeedingDomainEntity {
+  foodComponentBreed?: string;
   feedingId: string;
   foodPermittedFeeding?: string | TypefoodPermittedValueObject;
   descriptionFeeding?: string | TypeFeedingValueObject;
   foodQualityFeeding?: string | FoodQualityValueObject;
 
   constructor(data?: IFeedingDomainEntity) {
+    if (data?.foodComponentBreed)
+      this.foodComponentBreed = data.foodComponentBreed;
     if (data?.descriptionFeeding)
       this.descriptionFeeding = data.descriptionFeeding;
     if (data?.feedingId) this.feedingId = data.feedingId;

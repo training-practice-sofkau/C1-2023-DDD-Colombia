@@ -16,7 +16,7 @@ export abstract class UpdatedAgeHybridVigorEventPublisher<
   /**
    *
    *
-   * @template Result tipo de respuesta
+   * @template Result tipo de respuesta|
    * @return  {Promise<Result>} respuesta del brocker
    * @memberof UpdatedAgeHybridVigorEventPublisher
    */

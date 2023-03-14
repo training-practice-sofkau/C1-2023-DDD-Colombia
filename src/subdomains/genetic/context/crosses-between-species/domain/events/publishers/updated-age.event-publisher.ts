@@ -6,11 +6,11 @@ import { HybridVigorDomainEntity } from '../../entities/hybrid-vigor.domain-enti
  *
  * @export
  * @abstract
- * @class RegisteredWeigthHybridVigorEventPublisher
+ * @class RegisteredAgeEventPublisher
  * @extends {EventPublisherBase<Response>}
  * @template Response
  */
-export abstract class RegisteredWeigthHybridVigorEventPublisher<
+export abstract class UpdatedAgeEventPublisher<
   Response = HybridVigorDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
@@ -18,11 +18,11 @@ export abstract class RegisteredWeigthHybridVigorEventPublisher<
    *
    * @template Result tipo de respuesta
    * @return  {Promise<Result>} respuesta del brocker
-   * @memberof RegisteredWeigthHybridVigorEventPublisher
+   * @memberof UpdatedAgeEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'crosses-between-species.registered-weigth-hybrid-vigor',
+      'crosses-between-species.updated-age',
       JSON.stringify(this.response),
     );
   }

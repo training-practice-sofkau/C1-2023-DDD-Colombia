@@ -2,14 +2,17 @@ import { BreedTypeValueObject } from '../value-objects/breeds/breed-type/breed-t
 import { DescriptionValueObject } from '../value-objects/breeds/description-breed/description.breeds.value-object';
 import { IBreedDomainEntity } from './interfaces/breed.domain-entity.interface';
 import { IFeedingDomainEntity } from './interfaces/feeding.domain-entity.interface';
-import { HybridVigorDomainEntity } from './hybrid-vigor.domain-entity';
+import { EnviromentValueObject } from '../value-objects/breeds/environment-breed/enviroment.breeds.value-object';
+import { IHybridVigorDomainEntity } from './interfaces/hybrid-vigor.domain-entity.interface';
 export class BreedDomainEntity implements IBreedDomainEntity {
   breedId?: string;
   breedDescription?: string | DescriptionValueObject;
   breedFeeding?: IFeedingDomainEntity;
   breedType?: string | BreedTypeValueObject;
-  breedEviroment?: string | BreedTypeValueObject;
-  breedHybridVigor?: HybridVigorDomainEntity;
+  breedEviroment?: string | EnviromentValueObject;
+  breedHybridVigor?: IHybridVigorDomainEntity;
+  breedFeedingComponent?: IFeedingDomainEntity;
+  breedFoodComponent?: IFeedingDomainEntity;
 
   constructor(data?: IBreedDomainEntity) {
     if (data?.breedDescription) this.breedDescription = data.breedDescription;
@@ -18,5 +21,9 @@ export class BreedDomainEntity implements IBreedDomainEntity {
     if (data?.breedHybridVigor) this.breedHybridVigor = data.breedHybridVigor;
     if (data?.breedId) this.breedId = data.breedId;
     if (data?.breedType) this.breedType = data.breedType;
+    if (data?.breedFoodComponent)
+      this.breedFoodComponent = data.breedFoodComponent;
+    if (data?.breedFeedingComponent)
+      this.breedFeeding = data.breedFeedingComponent;
   }
 }

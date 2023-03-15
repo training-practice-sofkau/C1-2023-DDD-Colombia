@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 import { IBreedDomainService } from '../../services/breed.domain-service';
 import { IFeedingDomainService } from '../../services/feeding.domain-service';
 import { IHybridVigorDomainService } from '../../services/hybrid-vigor.domain-service';
@@ -73,7 +71,6 @@ export class BreedsAgreggate
     GotHybridVigorByIdEventPublisher,
     RegisteredBreedEventPublisher,
     RegisteredFeedingEventPublisher,
-    RegisteredHybridVigorEventPublisher,
     UpdatedAgeHybridVigorEventPublisher,
     UpdatedAgeEventPublisher,
     UpdatedDescriptionFeedingEventPublisher,
@@ -120,7 +117,8 @@ export class BreedsAgreggate
       UpdatedEnviromentBreedEventPublisher;
     this.UpdatedFoodComponentBreedEventPublisher =
       UpdatedFoodComponentBreedEventPublisher;
-    this.UpdatedFoodComponentFeedingEventPublisher = UpdatedFoodComponentFeedingEventPublisher;
+    this.UpdatedFoodComponentFeedingEventPublisher =
+      UpdatedFoodComponentFeedingEventPublisher;
     this.UpdatedFoodPermitedEventPublisher = UpdatedFoodPermitedEventPublisher;
     this.UpdatedWeigthHybridVigorEventPublisher =
       UpdatedWeigthHybridVigorEventPublisher;
@@ -129,10 +127,10 @@ export class BreedsAgreggate
   }
   registerBreed(breed: BreedDomainEntity): Promise<BreedDomainEntity> {
     return RegisterBreedHelper(
-        breed,
-        this.breedDomain,
-        this.RegisteredBreedEventPublisher,
-        );
+      breed,
+      this.breedDomain,
+      this.RegisteredBreedEventPublisher,
+    );
   }
   getBreedById(id: string): Promise<BreedDomainEntity> {
     return GetBreedByIdHelper(
@@ -154,7 +152,10 @@ export class BreedsAgreggate
       this.UpdatedEnviromentBreedEventPublisher,
     );
   }
-  validationRangeParentsBreed(rangeParents: string, id: string): Promise<HybridVigorDomainEntity> {
+  validationRangeParentsBreed(
+    rangeParents: string,
+    id: string,
+  ): Promise<HybridVigorDomainEntity> {
     return ValidationRangeParentsBreedHelper(
       rangeParents,
       id,
@@ -211,7 +212,7 @@ export class BreedsAgreggate
   }
   updateFoodComponentFeeding(
     foodComponent: string,
-    feeding: IFeedingDomainEntity
+    feeding: IFeedingDomainEntity,
   ): Promise<IFeedingDomainEntity> {
     return UpdateFoodComponentFeedingHelper(
       foodComponent,
@@ -256,10 +257,9 @@ export class BreedsAgreggate
   }
   getHybridVigorById(id: string): Promise<HybridVigorDomainEntity> {
     return GetHybridVigorByIdHelper(
-        id,
-        this.hybridVigorDomain,
-        this.GotHybridVigorByIdEventPublisher,
-
+      id,
+      this.hybridVigorDomain,
+      this.GotHybridVigorByIdEventPublisher,
     );
   }
 }

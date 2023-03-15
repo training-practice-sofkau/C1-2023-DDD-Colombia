@@ -2,7 +2,7 @@ import { ValueObjectBase, IErrorValueObject } from 'src/shared/sofka';
 import { IsUUID4 } from 'src/shared/validations/breed-Id.validator';
 import { uuid } from 'uuidv4';
 
-export class Feeding extends ValueObjectBase<string> {
+export class FeedingIdValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value ? value : uuid());
   }

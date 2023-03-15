@@ -1,9 +1,8 @@
 import { IUseCase, ValueObjectErrorHandler } from 'src/shared/sofka';
-import { ICreaterBreedCommand } from '../../../domain/interfaces/commands/create-breed.command';
+import { ICreaterBreedCommand } from '../../../domain/interfaces/commands/create-breed/create-breed.command';
 import { BreedsAgreggate } from '../../../domain/aggregates/breeds-aggerate/breeds-aggregate';
 import { RegisteredBreedEventPublisher } from '../../../domain/events/publishers/registered-breed.event-publisher';
 import { IBreedDomainService } from '../../../domain/services/breed.domain-service';
-import { ICreatedBreedResponse } from '../../../domain/interfaces/responses/created.breed.response';
 import { HybridVigorId } from '../../../domain/value-objects/hybrid-vigor/bybrid-vigor-Id/hybrid-vigor-Id.value-object';
 import { DescriptionValueObject } from '../../../domain/value-objects/breeds/description-breed/description.breeds.value-object';
 import { FeedingIdValueObject } from '../../../domain/value-objects/feeding/feeding-Id/feeding-Id.value-object';
@@ -13,6 +12,7 @@ import { ValueObjectException } from '../../../../../../../shared/sofka/exceptio
 import { BreedDomainEntity } from '../../../domain/entities/breed.domain';
 import { HybridVigorDomainEntity } from '../../../domain/entities/hybrid-vigor.domain-entity';
 import { FeedingDomainEntity } from '../../../domain/entities/feeding.domain';
+import { ICreatedBreedResponse } from '../../../domain/interfaces/responses/created-breed/created.breed.response';
 
 export class CreateBreedUsesCase
   extends ValueObjectErrorHandler

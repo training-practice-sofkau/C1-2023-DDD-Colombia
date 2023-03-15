@@ -1,4 +1,4 @@
-import { BreedDomainEntity } from '../../entities/breed.domain';
+import { BreedDomainEntity } from '../../../entities/breed.domain';
 
 /**
  *

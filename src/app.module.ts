@@ -1,9 +1,22 @@
 import { Module } from '@nestjs/common';
-import { BreedTypeValueObject } from './subdomains/genetic/context/crosses-between-species/domain/value-objects/breeds/breed-type/breed-type.breeds.value-object';
-
+import { ConfigModule } from '@nestjs/config';
+import { join } from 'node:path';
+import { AppController } from './app.controller';
+import { PostgreSQLModule } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/postgresql.module';
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [BreedTypeValueObject],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: join(
+        process.cwd(),
+        'environments',
+        `.env.${process.env.SCOPE?.trimEnd()}`,
+      ),
+      // envFilePath: '../environments/.env.dev',
+    }),
+    PostgreSQLModule,
+  ],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}

@@ -74,7 +74,7 @@ export class CreateBreedUsesCase
     breed.breedType = BreedType.valueOf();
 
     //retornar respuesta
-    const answer = await this.breedDomain.registerBreed(breed);
+    const answer = await this.breedsAgreggate.registerBreed(breed);
     return {
       responseBreed: answer,
       message: 'se creo la raza correctamente',

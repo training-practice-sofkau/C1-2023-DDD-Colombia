@@ -64,7 +64,7 @@ export class CreateFeedingQualityUsesCase
     foodtype.foodQualityFeeding = FoodQuality.valueOf();
 
     //retornar respuesta
-    const answer = await this.feedingDomain.registerFeeding(feeding);
+    const answer = await this.breedsAgreggate.registerFeeding(feeding);
     return {
       responseFeedingQuality: answer,
       message: 'Se ha registrado la alimentación',

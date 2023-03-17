@@ -1,4 +1,5 @@
-import { Column, Entity, Index } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, OneToOne, OneToMany } from 'typeorm';
+import { BreedEntity } from './breeds.entity';
 
 @Index('feeding_id_key', ['feedingId'])
 @Index('food_component_breed_key', ['foodComponentBreed'])
@@ -25,4 +26,7 @@ export class FeedingEntity {
 
   @Column('character varying', { name: 'food_quality_feeding', length: 50 })
   foodQualityFeeding: string;
+
+  @OneToMany(() => BreedEntity, (breeds) => breeds.feeding)
+  breed: BreedEntity;
 }

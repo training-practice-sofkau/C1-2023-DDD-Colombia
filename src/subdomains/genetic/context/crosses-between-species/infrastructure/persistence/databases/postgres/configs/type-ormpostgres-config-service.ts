@@ -4,6 +4,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { TypeOrmOptionsFactory } from '@nestjs/typeorm/dist';
 import { BreedEntity } from '../entities/breeds.entity';
 import { FeedingEntity } from '../entities/feeding.entity';
+import { HybridVigorEntity } from '../entities/hybrid-vigor.entity';
 
 @Injectable()
 export class TypeOrmPostgresConfigService implements TypeOrmOptionsFactory {
@@ -16,7 +17,7 @@ export class TypeOrmPostgresConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DB_USER'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get<string>('DB_NAME'),
-      entities: [BreedEntity, FeedingEntity],
+      entities: [BreedEntity, FeedingEntity, HybridVigorEntity],
       synchronize: true,
       logging: true,
     };

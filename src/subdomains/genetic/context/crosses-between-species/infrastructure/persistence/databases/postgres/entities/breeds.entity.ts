@@ -1,6 +1,8 @@
-import { Index } from 'typeorm';
+import { HybridVigorEntity } from './hybrid-vigor.entity';
+import { Index, OneToOne, OneToMany, ManyToOne } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Entity } from 'typeorm/decorator/entity/Entity';
+import { FeedingEntity } from './feeding.entity';
 
 @Index('breed_id_key', ['breedId'])
 @Index('breed_description_key', ['breedDescription'])
@@ -39,4 +41,12 @@ export class BreedEntity {
 
   @Column('character varying', { name: 'breed_food_component', length: 50 })
   breedFoodComponent: string;
+
+  @ManyToOne(() => HybridVigorEntity, (hybridVigor) => hybridVigor.breeds)
+  hybridVigor: HybridVigorEntity;
+
+  @ManyToOne(() => FeedingEntity, (feeding) => feeding.breed, {
+    cascade: ['insert'],
+  })
+  feeding: FeedingEntity[];
 }

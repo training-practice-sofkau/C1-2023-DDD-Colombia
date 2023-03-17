@@ -1,17 +1,20 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BreedEntity } from '../entities/breeds.entity';
+import { BreedPostgresEntity } from '../entities/breeds-postgre.entity';
 import { IBaseRepository } from './interfaes/base.interface';
 
-export class BreedRepository implements IBaseRepository<BreedEntity> {
+export class BreedRepository implements IBaseRepository<BreedPostgresEntity> {
   constructor(
-    @InjectRepository(BreedEntity)
-    private breedRepository: Repository<BreedEntity>,
+    @InjectRepository(BreedPostgresEntity)
+    private breedRepository: Repository<BreedPostgresEntity>,
   ) {}
-  create(Entity: BreedEntity): Promise<BreedEntity> {
+  create(Entity: BreedPostgresEntity): Promise<BreedPostgresEntity> {
     return this.breedRepository.save(Entity);
   }
-  async update(id: string, entity: BreedEntity): Promise<BreedEntity> {
+  async update(
+    id: string,
+    entity: BreedPostgresEntity,
+  ): Promise<BreedPostgresEntity> {
     const data = await this.breedRepository.findOneBy({ breedId: id });
     if (data) {
       const newEntity = {
@@ -32,10 +35,10 @@ export class BreedRepository implements IBaseRepository<BreedEntity> {
     throw new Error('breedId not found');
   }
 
-  async findAll(): Promise<BreedEntity[]> {
+  async findAll(): Promise<BreedPostgresEntity[]> {
     return this.breedRepository.find();
   }
-  async findOneById(id: string): Promise<BreedEntity> {
+  async findOneById(id: string): Promise<BreedPostgresEntity> {
     const data = await this.breedRepository.findOneBy({
       breedId: id,
     });

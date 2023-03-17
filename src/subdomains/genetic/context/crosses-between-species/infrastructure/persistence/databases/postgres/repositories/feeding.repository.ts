@@ -1,16 +1,21 @@
 import { IBaseRepository } from './interfaes/base.interface';
-import { FeedingEntity } from './../entities/feeding.entity';
+import { FeedingPostgresEntity } from '../entities/feeding-postgres.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-export class FeedingRepository implements IBaseRepository<FeedingEntity> {
+export class FeedingRepository
+  implements IBaseRepository<FeedingPostgresEntity>
+{
   constructor(
-    @InjectRepository(FeedingEntity)
-    private feedingRepository: Repository<FeedingEntity>,
+    @InjectRepository(FeedingPostgresEntity)
+    private feedingRepository: Repository<FeedingPostgresEntity>,
   ) {}
-  create(Entity: FeedingEntity): Promise<FeedingEntity> {
+  create(Entity: FeedingPostgresEntity): Promise<FeedingPostgresEntity> {
     return this.feedingRepository.save(Entity);
   }
-  async update(id: string, Entity: FeedingEntity): Promise<FeedingEntity> {
+  async update(
+    id: string,
+    Entity: FeedingPostgresEntity,
+  ): Promise<FeedingPostgresEntity> {
     const data = await this.feedingRepository.findOneBy({ feedingId: id });
     if (data) {
       const newEntity = {
@@ -30,10 +35,10 @@ export class FeedingRepository implements IBaseRepository<FeedingEntity> {
     }
     throw new Error('feedingId not found');
   }
-  async findAll(): Promise<FeedingEntity[]> {
+  async findAll(): Promise<FeedingPostgresEntity[]> {
     return this.feedingRepository.find();
   }
-  async findOneById(id: string): Promise<FeedingEntity> {
+  async findOneById(id: string): Promise<FeedingPostgresEntity> {
     const data = await this.feedingRepository.findOneBy({
       feedingId: id,
     });

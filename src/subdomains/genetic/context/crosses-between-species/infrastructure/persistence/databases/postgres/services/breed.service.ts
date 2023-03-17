@@ -1,24 +1,27 @@
 import { BreedRepository } from './../repositories/breed.repository';
 import { Injectable } from '@nestjs/common';
-import { BreedEntity } from '../entities/breeds.entity';
+import { BreedPostgresEntity } from '../entities/breeds-postgre.entity';
 import { IBreedService } from './interface/breed-service.interface';
 
 @Injectable()
-export class BreedService implements IBreedService<BreedEntity> {
+export class BreedService implements IBreedService<BreedPostgresEntity> {
   constructor(private readonly breedRepository: BreedRepository) {}
-  createBreed(Entity: BreedEntity): Promise<BreedEntity> {
+  createBreed(Entity: BreedPostgresEntity): Promise<BreedPostgresEntity> {
     return this.breedRepository.create(Entity);
   }
-  updateBreed(breedId: string, Entity: BreedEntity): Promise<BreedEntity> {
+  updateBreed(
+    breedId: string,
+    Entity: BreedPostgresEntity,
+  ): Promise<BreedPostgresEntity> {
     return this.breedRepository.update(breedId, Entity);
   }
   deleteBreed(breedId: string): Promise<boolean> {
     return this.breedRepository.delete(breedId);
   }
-  findAllBreed(): Promise<BreedEntity[]> {
+  findAllBreed(): Promise<BreedPostgresEntity[]> {
     return this.breedRepository.findAll();
   }
-  findOneByIdBreed(id: string): Promise<BreedEntity> {
+  findOneByIdBreed(id: string): Promise<BreedPostgresEntity> {
     return this.breedRepository.findOneById(id);
   }
 }

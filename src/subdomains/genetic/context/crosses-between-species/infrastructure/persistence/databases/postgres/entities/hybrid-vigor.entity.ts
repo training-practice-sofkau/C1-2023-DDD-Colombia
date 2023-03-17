@@ -1,5 +1,5 @@
 import { Column, Entity, Index, OneToMany } from 'typeorm';
-import { BreedEntity } from './breeds.entity';
+import { BreedPostgresEntity } from './breeds-postgre.entity';
 @Index('hybrid_vigor_id_key', ['hybridVigorId'])
 @Index('weigth_hybrid_vigor_key', ['weigthHybridVigor'])
 @Index('age_hybrid_vigor_key', ['ageHybridVigor'])
@@ -22,6 +22,6 @@ export class HybridVigorEntity {
   @Column('character varying', { name: 'weigth_hybrid_vigor', length: 50 })
   weigthHybridVigor: string;
 
-  @OneToMany(() => BreedEntity, (breeds) => breeds.hybridVigor)
-  breeds: BreedEntity[];
+  @OneToMany(() => BreedPostgresEntity, (breeds) => breeds.hybridVigor)
+  breeds: BreedPostgresEntity[];
 }

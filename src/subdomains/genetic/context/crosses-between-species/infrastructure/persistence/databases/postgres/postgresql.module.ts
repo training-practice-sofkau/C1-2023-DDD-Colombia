@@ -5,18 +5,22 @@ import { FeedingRepository } from './repositories/feeding.repository';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
 import { TypeOrmPostgresConfigService } from './configs/type-ormpostgres-config-service';
-import { BreedEntity } from './entities/breeds.entity';
+import { BreedPostgresEntity } from './entities/breeds-postgre.entity';
 import { BreedRepository } from './repositories/breed.repository';
 import { BreedService } from './services/breed.service';
 import { FeedingService } from './services/feeding.service';
-import { FeedingEntity } from './entities/feeding.entity';
+import { FeedingPostgresEntity } from './entities/feeding-postgres.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmPostgresConfigService,
     }),
-    TypeOrmModule.forFeature([BreedEntity, FeedingEntity, HybridVigorEntity]),
+    TypeOrmModule.forFeature([
+      BreedPostgresEntity,
+      FeedingPostgresEntity,
+      HybridVigorEntity,
+    ]),
   ],
   controllers: [],
   providers: [

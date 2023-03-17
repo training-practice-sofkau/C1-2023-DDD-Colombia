@@ -1,27 +1,27 @@
 import { FeedingRepository } from './../repositories/feeding.repository';
 import { Injectable } from '@nestjs/common';
-import { FeedingEntity } from '../entities/feeding.entity';
+import { FeedingPostgresEntity } from '../entities/feeding-postgres.entity';
 import { IFeedingService } from './interface/feeding-service-interface';
 @Injectable()
-export class FeedingService implements IFeedingService<FeedingEntity> {
+export class FeedingService implements IFeedingService<FeedingPostgresEntity> {
   constructor(private readonly feedingRepository: FeedingRepository) {}
 
-  createFeeding(Entity: FeedingEntity): Promise<FeedingEntity> {
+  createFeeding(Entity: FeedingPostgresEntity): Promise<FeedingPostgresEntity> {
     return this.feedingRepository.create(Entity);
   }
   updateFeeding(
     feedingId: string,
-    Entity: FeedingEntity,
-  ): Promise<FeedingEntity> {
+    Entity: FeedingPostgresEntity,
+  ): Promise<FeedingPostgresEntity> {
     return this.feedingRepository.update(feedingId, Entity);
   }
   deleteFeeding(feedingId: string): Promise<boolean> {
     return this.feedingRepository.delete(feedingId);
   }
-  findAllFeeding(): Promise<FeedingEntity[]> {
+  findAllFeeding(): Promise<FeedingPostgresEntity[]> {
     return this.feedingRepository.findAll();
   }
-  findOneByIdFeeding(id: string): Promise<FeedingEntity> {
+  findOneByIdFeeding(id: string): Promise<FeedingPostgresEntity> {
     return this.feedingRepository.findOneById(id);
   }
 }

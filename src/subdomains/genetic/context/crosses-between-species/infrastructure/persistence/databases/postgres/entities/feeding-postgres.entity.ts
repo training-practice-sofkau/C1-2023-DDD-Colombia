@@ -1,5 +1,4 @@
 import { Column, Entity, Index, ManyToOne, OneToOne, OneToMany } from 'typeorm';
-import { BreedEntity } from './breeds.entity';
 
 @Index('feeding_id_key', ['feedingId'])
 @Index('food_component_breed_key', ['foodComponentBreed'])
@@ -7,7 +6,7 @@ import { BreedEntity } from './breeds.entity';
 @Index('description_feeding_key', ['descriptionFeeding'])
 @Index('food_quality_feeding_key', ['foodQualityFeeding'])
 @Entity('feeding', { schema: 'public' })
-export class FeedingEntity {
+export class FeedingPostgresEntity {
   @Column('uuid', {
     primary: true,
     name: 'feeding_id',
@@ -27,6 +26,6 @@ export class FeedingEntity {
   @Column('character varying', { name: 'food_quality_feeding', length: 50 })
   foodQualityFeeding: string;
 
-  @OneToMany(() => BreedEntity, (breeds) => breeds.feeding)
-  breed: BreedEntity;
+  @OneToMany(() => FeedingPostgresEntity, (breeds) => breeds.feedingId)
+  breed: FeedingPostgresEntity;
 }

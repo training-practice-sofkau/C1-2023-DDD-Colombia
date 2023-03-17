@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { BreedEntity } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/entities/breeds.entity';
+import { BreedPostgresEntity } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/entities/breeds-postgre.entity';
 import { BreedService } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/services/breed.service';
 import { FeedingService } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/services/feeding.service';
-import { FeedingEntity } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/entities/feeding.entity';
+import { FeedingPostgresEntity } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/entities/feeding-postgres.entity';
 import { HybridVigorService } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/services/hybrid-vigor.service';
 import { HybridVigorEntity } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/entities/hybrid-vigor.entity';
 
@@ -17,22 +17,26 @@ export class AppController {
   ) {}
 
   @Get('get-all-breed')
-  getAllBreeds(): Promise<BreedEntity[]> {
+  getAllBreeds(): Promise<BreedPostgresEntity[]> {
     return this.breedService.findAllBreed();
   }
 
   @Post('createBreed')
-  createBreed(@Body() breed: BreedEntity): Promise<BreedEntity> {
+  createBreed(
+    @Body() breed: BreedPostgresEntity,
+  ): Promise<BreedPostgresEntity> {
     return this.breedService.createBreed(breed);
   }
 
   @Get('get-all-feeding')
-  findAllFeeding(): Promise<FeedingEntity[]> {
+  findAllFeeding(): Promise<FeedingPostgresEntity[]> {
     return this.feedingService.findAllFeeding();
   }
 
   @Post('createFeeding')
-  createFeeding(@Body() feeding: FeedingEntity): Promise<FeedingEntity> {
+  createFeeding(
+    @Body() feeding: FeedingPostgresEntity,
+  ): Promise<FeedingPostgresEntity> {
     return this.feedingService.createFeeding(feeding);
   }
 

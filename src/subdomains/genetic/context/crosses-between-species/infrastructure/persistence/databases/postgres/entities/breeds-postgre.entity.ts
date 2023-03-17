@@ -2,7 +2,7 @@ import { HybridVigorEntity } from './hybrid-vigor.entity';
 import { Index, OneToOne, OneToMany, ManyToOne } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Entity } from 'typeorm/decorator/entity/Entity';
-import { FeedingEntity } from './feeding.entity';
+import { FeedingPostgresEntity } from './feeding-postgres.entity';
 
 @Index('breed_id_key', ['breedId'])
 @Index('breed_description_key', ['breedDescription'])
@@ -13,7 +13,7 @@ import { FeedingEntity } from './feeding.entity';
 @Index('breed_feeding_component_key', ['breedFeedingComponent'])
 @Index('breed_food_component_key', ['breedFoodComponent'])
 @Entity('breeds', { schema: 'public' })
-export class BreedEntity {
+export class BreedPostgresEntity {
   @Column('uuid', {
     primary: true,
     name: 'breed_id',
@@ -45,8 +45,8 @@ export class BreedEntity {
   @ManyToOne(() => HybridVigorEntity, (hybridVigor) => hybridVigor.breeds)
   hybridVigor: HybridVigorEntity;
 
-  @ManyToOne(() => FeedingEntity, (feeding) => feeding.breed, {
+  @ManyToOne(() => FeedingPostgresEntity, (feeding) => feeding.breed, {
     cascade: ['insert'],
   })
-  feeding: FeedingEntity[];
+  feeding: BreedPostgresEntity[];
 }

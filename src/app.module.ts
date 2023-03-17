@@ -1,10 +1,22 @@
 import { Module } from '@nestjs/common';
-import { DatosController } from './subdomains/__SUBDOMINIO__/contexts/__CONTEXTO__1__/infrastructure/datos.controller';
-import { GuardarService } from './subdomains/__SUBDOMINIO__/contexts/__CONTEXTO__1__/infrastructure/guardar.service';
-
+import { ConfigModule } from '@nestjs/config';
+import { join } from 'node:path';
+import { AppController } from './app.controller';
+import { PostgreSQLModule } from './subdomains/genetic/context/crosses-between-species/infrastructure/persistence/databases/postgres/postgresql.module';
 @Module({
-  imports: [],
-  controllers: [DatosController],
-  providers: [GuardarService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: join(
+        process.cwd(),
+        'environments',
+        `.env.${process.env.SCOPE?.trimEnd()}`,
+      ),
+      // envFilePath: '../environments/.env.dev',
+    }),
+    PostgreSQLModule,
+  ],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
